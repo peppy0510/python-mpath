@@ -51,11 +51,11 @@ class mpath():
     def get_extension(self):
         return mstr(self.extension)
 
-    def set_serial(self, serial):
-        '''
-        serialize에 사용되는 인덱스.
-        '''
-        self.serial = serial
+    # def set_serial(self, serial):
+    #     '''
+    #     serialize에 사용되는 인덱스.
+    #     '''
+    #     self.serial = serial
 
     def set_path(self, path, check_isfile=False):
         '''
@@ -233,17 +233,16 @@ class mpath():
 
         import glob
 
-        def search_subpath(path, pattern=u'*'):
+        def search_subpath(path, pattern):
             retlist = glob.glob(os.path.join(path, pattern))
             findlist = os.listdir(path)
-            for f in findlist:
-                nextpath = os.path.join(path, f)
+            for p in findlist:
+                nextpath = os.path.join(path, p)
                 if os.path.isdir(nextpath):
                     retlist += search_subpath(nextpath, pattern)
-                retlist += [nextpath]
             return retlist
 
-        paths = search_subpath(self.path, pattern=u'*')
+        paths = search_subpath(self.path, pattern)
 
         if not file and directory:
             paths = [v for v in paths if os.path.isdir(v)]
@@ -330,17 +329,12 @@ class mpath():
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.communicate()
         time.sleep(0.05)
-        command = 'chown %s %d %s' % (option, own, self.path)
+        command = 'chown %s %s %s' % (option, own, self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.communicate()
 
 
 def __test__():
-    import sys
-    from io import TextIOWrapper
-    sys.stdout = TextIOWrapper(sys.stdout.buffer,
-                               encoding='utf-8', errors='replace')
-
     test_path = os.path.join('var', 'www', 'some.text')
     path = mpath(test_path)
     print(path.get_path())
@@ -360,6 +354,11 @@ def __test__():
         current_path, '__test__', 'var', 'www', 'some.txt')
     path = mpath(test_path)
     path.initialize()
+    print('-' * 50)
+    searched = mpath(os.path.join(current_path, '__test__')).search_subpath('*.txt')
+    for v in searched:
+        print(v)
+    print('-' * 50)
     path.remove()
 
     test_path = os.path.join(
@@ -372,4 +371,7 @@ def __test__():
 
 
 if __name__ == '__main__':
+    from io import TextIOWrapper
+    sys.stdout = TextIOWrapper(sys.stdout.buffer,
+                               encoding='utf-8', errors='replace')
     __test__()
