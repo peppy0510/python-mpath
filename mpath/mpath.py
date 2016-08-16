@@ -272,7 +272,7 @@ class mpath():
                 seq = '\x1b[1;%dm' % (colour) + msg + '\x1b[0m' + os.linesep
                 sys.stdout.write(seq)
 
-    def initialize(self, own='www-data:www-data', mod=744, forced=True, message=True):
+    def initialize(self, own='www-data:www-data', mod=755, forced=True, message=True):
         '''
         해당 경로 이하를 모두 삭제하고 새롭게 생성.
         '''
@@ -315,7 +315,7 @@ class mpath():
 
         remove_empty(self.path, parent=parent)
 
-    def change_ownmod(self, own='www-data:www-data', mod=744, recursive=False):
+    def change_ownmod(self, own='www-data:www-data', mod=755, recursive=False):
         if not os.path.exists(self.path):
             return
         if sys.platform.startswith('win'):
