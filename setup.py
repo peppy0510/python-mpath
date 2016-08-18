@@ -15,7 +15,7 @@ except ImportError:
 
 setup(
     name='mpath',
-    version='0.1.5',
+    version='0.1.6',
     packages=['mpath'],
     author='Taehong Kim',
     author_email='peppy0510@hotmail.com',

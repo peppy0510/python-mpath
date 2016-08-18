@@ -315,7 +315,7 @@ class mpath():
 
         remove_empty(self.path, parent=parent)
 
-    def change_ownmod(self, own='www-data:www-data', mod=755, recursive=False):
+    def change_ownmod(self, own='www-data:www-data', mod='0755', recursive=False):
         if not os.path.exists(self.path):
             return
         if sys.platform.startswith('win'):
@@ -325,7 +325,7 @@ class mpath():
             option = '-R'
         import time
         import subprocess
-        command = 'chmod %s %d %s' % (option, mod, self.path)
+        command = 'chmod %s %s %s' % (option, mod, self.path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.communicate()
         time.sleep(0.05)
