@@ -300,7 +300,7 @@ class mpath():
                 os.makedirs(dirname, mod)
             with open(self.path, 'w') as file:
                 file.write('')
-        self.change_ownmod(own=own, mod=mod)
+        self.change_ownmod(own=own, mod=str(mod).rjust(4, '0'))
 
     def remove_empty(self, parent=0):
         '''
