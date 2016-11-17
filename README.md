@@ -2,7 +2,7 @@
 ## Installation
 
 ```bash
-pip install git+http://muteklab.com:9000/root/python-mpath.git
+pip install git+http://east-control.com:9000/pockestra/python-mpath.git
 ```
 
 ```bash
@@ -83,5 +83,5 @@ mpath('path').change_ownmod(own='www-data:www-data', mod='744', recursive=False)
 ## Repository
 
 ```bash
-git clone http://muteklab.com:9000/root/python-mpath.git
+git clone http://east-control.com:9000/pockestra/python-mpath.git
 ```
