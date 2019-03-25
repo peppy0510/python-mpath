@@ -2,7 +2,7 @@
 ## Installation
 
 ```bash
-pip install git+http://east-control.com:3000/pockestra/python-mpath.git
+pip install git+http://git@github.com/peppy0510/python-mpath.git
 ```
 
 ```bash
@@ -83,5 +83,5 @@ mpath('path').change_ownmod(own='www-data:www-data', mod='744', recursive=False)
 ## Repository
 
 ```bash
-git clone http://east-control.com:9000/pockestra/python-mpath.git
+git clone git@github.com:peppy0510/python-mpath.git
 ```
